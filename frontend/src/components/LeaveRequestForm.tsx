@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useAuth } from '../hooks/useAuth'
 import { createLeaveRequest } from '../services/leaveService'
-import { LEAVE_TYPES } from '../types'
+import { DEPARTMENTS, LEAVE_TYPES } from '../types'
 import { calculateLeaveDurationInDays, calculateLeaveDurationInHours } from '../utils/calculateLeaveDuration'
 import { leaveRequestSchema, type LeaveRequestFormValues } from '../utils/validation'
 import { Button } from './ui/Button'
@@ -90,7 +90,13 @@ export function LeaveRequestForm({ onSuccess }: { onSuccess: () => void }) {
           <Input label="Ad Soyad" defaultValue={user?.fullName} />
           <Input label="Personel No" defaultValue={user?.employeeNumber} />
           <Input label="E-posta" type="email" defaultValue={user?.email} />
-          <Input label="Departman" defaultValue={user?.department} />
+          <Select label="Departman" defaultValue={user?.department}>
+            {DEPARTMENTS.map((department) => (
+              <option key={department} value={department}>
+                {department}
+              </option>
+            ))}
+          </Select>
           <Input label="Bağlı Olduğu Yönetici" defaultValue={user?.managerName ?? ''} className="sm:col-span-2" />
         </div>
       </div>

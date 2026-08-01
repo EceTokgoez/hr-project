@@ -30,4 +30,25 @@ export interface LeaveRequest {
   }
 }
 
-export const LEAVE_TYPES = ['Yıllık İzin', 'Hastalık İzni', 'Mazeret İzni', 'Ücretsiz İzin'] as const
+export const LEAVE_TYPES = [
+  'Yıllık İzin',
+  'Hastalık / Rapor İzni',
+  'Mazeret İzni',
+  'Doğum İzni',
+  'Babalık İzni',
+  'Evlilik İzni',
+  'Ölüm İzni',
+  'Refakat İzni',
+  'Diğer',
+] as const
+
+export const DEPARTMENTS = [
+  'Müşteri Hizmetleri Departmanı',
+  'Bilgi Teknolojileri ve AR-GE Departmanları',
+  'Hukuk Departmanı',
+  'İnsan Kaynakları Departmanı',
+  'Pazarlama ve Satış Departmanları',
+  'Finans Departmanı',
+  'Üretim Departmanı',
+  'Yönetim Departmanı',
+] as const

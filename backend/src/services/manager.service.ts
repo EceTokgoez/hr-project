@@ -2,9 +2,9 @@ import { LeaveStatus } from '@prisma/client';
 import { prisma } from '../prisma';
 import { AppError } from '../utils/AppError';
 
-export async function getPendingRequestsForManager(managerId: string) {
+export async function getRequestsForManager(managerId: string) {
   return prisma.leaveRequest.findMany({
-    where: { status: 'PENDING', employee: { managerId } },
+    where: { employee: { managerId } },
     orderBy: { createdAt: 'desc' },
     include: {
       employee: { select: { id: true, fullName: true, department: true } },

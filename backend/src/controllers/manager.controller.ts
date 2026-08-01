@@ -2,9 +2,9 @@ import { Request, Response } from 'express';
 import { asyncHandler } from '../utils/asyncHandler';
 import * as managerService from '../services/manager.service';
 
-export const getPendingRequests = asyncHandler(async (req: Request, res: Response) => {
+export const getRequests = asyncHandler(async (req: Request, res: Response) => {
   const managerId = req.user!.id;
-  const data = await managerService.getPendingRequestsForManager(managerId);
+  const data = await managerService.getRequestsForManager(managerId);
   res.status(200).json({ data });
 });
 

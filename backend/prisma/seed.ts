@@ -10,26 +10,26 @@ async function main() {
 
   const manager = await prisma.user.upsert({
     where: { email: 'manager@test.com' },
-    update: {},
+    update: { department: 'İnsan Kaynakları Departmanı' },
     create: {
       fullName: 'Ayşe Yılmaz',
       employeeNumber: 'M001',
       email: 'manager@test.com',
       password: hashedPassword,
-      department: 'İnsan Kaynakları',
+      department: 'İnsan Kaynakları Departmanı',
       role: 'MANAGER',
     },
   });
 
   await prisma.user.upsert({
     where: { email: 'employee@test.com' },
-    update: {},
+    update: { department: 'Bilgi Teknolojileri ve AR-GE Departmanları' },
     create: {
       fullName: 'Mehmet Demir',
       employeeNumber: 'E001',
       email: 'employee@test.com',
       password: hashedPassword,
-      department: 'Yazılım',
+      department: 'Bilgi Teknolojileri ve AR-GE Departmanları',
       role: 'EMPLOYEE',
       managerId: manager.id,
     },

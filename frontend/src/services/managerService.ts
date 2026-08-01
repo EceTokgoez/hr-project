@@ -1,7 +1,7 @@
 import { apiRequest } from './api'
 import type { LeaveRequest } from '../types'
 
-export function getPendingRequests(token: string) {
+export function getRequests(token: string) {
   return apiRequest<LeaveRequest[]>('/manager/requests', { token })
 }
 

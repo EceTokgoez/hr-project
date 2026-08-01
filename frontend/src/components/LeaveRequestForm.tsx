@@ -41,6 +41,7 @@ export function LeaveRequestForm({ onSuccess }: { onSuccess: () => void }) {
   const date = watch('date')
   const startTime = watch('startTime')
   const endTime = watch('endTime')
+  const leaveType = watch('leaveType')
 
   const dailyDuration =
     startDate && endDate && new Date(endDate) >= new Date(startDate)
@@ -132,7 +133,13 @@ export function LeaveRequestForm({ onSuccess }: { onSuccess: () => void }) {
                 error={errors.startDate?.message}
                 {...register('startDate')}
               />
-              <Input type="date" label="Bitiş Tarihi" error={errors.endDate?.message} {...register('endDate')} />
+              <Input
+                type="date"
+                label="Bitiş Tarihi"
+                min={startDate || undefined}
+                error={errors.endDate?.message}
+                {...register('endDate')}
+              />
             </div>
           ) : (
             <div className="flex flex-col gap-4">
@@ -144,7 +151,13 @@ export function LeaveRequestForm({ onSuccess }: { onSuccess: () => void }) {
                   error={errors.startTime?.message}
                   {...register('startTime')}
                 />
-                <Input type="time" label="Bitiş Saati" error={errors.endTime?.message} {...register('endTime')} />
+                <Input
+                  type="time"
+                  label="Bitiş Saati"
+                  min={startTime || undefined}
+                  error={errors.endTime?.message}
+                  {...register('endTime')}
+                />
               </div>
             </div>
           )}
@@ -170,6 +183,11 @@ export function LeaveRequestForm({ onSuccess }: { onSuccess: () => void }) {
               </option>
             ))}
           </Select>
+          {leaveType === 'Diğer' && (
+            <p className="-mt-2 text-xs text-amber-600">
+              İzin türünüz "Diğer" olduğu için lütfen açıklamada belirtiniz.
+            </p>
+          )}
 
           <Textarea
             label="Açıklama"

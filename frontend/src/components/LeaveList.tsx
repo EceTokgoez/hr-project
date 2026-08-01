@@ -18,7 +18,8 @@ export function LeaveList({ leaveRequests }: { leaveRequests: LeaveRequest[] }) 
           <div>
             <p className="font-medium text-slate-800">{leave.leaveType}</p>
             <p className="text-sm text-slate-500">
-              {formatDate(leave.startDate)} - {formatDate(leave.endDate)} · {leave.leaveDuration} gün
+              {formatDate(leave.startDate)} - {formatDate(leave.endDate)} · {leave.leaveDuration}{' '}
+              {leave.durationType === 'HOURLY' ? 'saat' : 'gün'}
             </p>
             {leave.description && <p className="mt-1 text-sm text-slate-400">{leave.description}</p>}
           </div>

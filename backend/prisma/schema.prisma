@@ -18,6 +18,11 @@ enum LeaveStatus {
   REJECTED
 }
 
+enum LeaveDurationType {
+  DAILY
+  HOURLY
+}
+
 model User {
   id             String   @id @default(uuid())
   fullName       String
@@ -36,14 +41,15 @@ model User {
 }
 
 model LeaveRequest {
-  id            String      @id @default(uuid())
+  id            String            @id @default(uuid())
   leaveType     String
+  durationType  LeaveDurationType @default(DAILY)
   startDate     DateTime
   endDate       DateTime
   leaveDuration Int
-  description   String      @db.VarChar(300)
-  status        LeaveStatus @default(PENDING)
-  createdAt     DateTime    @default(now())
+  description   String            @db.VarChar(300)
+  status        LeaveStatus       @default(PENDING)
+  createdAt     DateTime          @default(now())
 
   employeeId String
   employee   User   @relation(fields: [employeeId], references: [id])

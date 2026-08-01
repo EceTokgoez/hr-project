@@ -74,7 +74,8 @@ export function ManagerDashboardPage() {
                 </p>
                 <p className="text-sm text-slate-500">
                   {request.employee?.department} · {formatDate(request.startDate)} -{' '}
-                  {formatDate(request.endDate)} · {request.leaveDuration} gün
+                  {formatDate(request.endDate)} · {request.leaveDuration}{' '}
+                  {request.durationType === 'HOURLY' ? 'saat' : 'gün'}
                 </p>
                 {request.description && (
                   <p className="mt-1 text-sm text-slate-400">{request.description}</p>

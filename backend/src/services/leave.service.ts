@@ -1,21 +1,29 @@
+import { LeaveDurationType } from '@prisma/client';
 import { prisma } from '../prisma';
-import { calculateLeaveDuration } from '../utils/calculateLeaveDuration';
+import { calculateLeaveDurationInDays, calculateLeaveDurationInHours } from '../utils/calculateLeaveDuration';
 
 interface CreateLeaveInput {
   leaveType: string;
+  durationType: LeaveDurationType;
   startDate: Date;
   endDate: Date;
   description: string;
 }
 
 export async function createLeaveRequest(employeeId: string, input: CreateLeaveInput) {
+  const leaveDuration =
+    input.durationType === 'HOURLY'
+      ? calculateLeaveDurationInHours(input.startDate, input.endDate)
+      : calculateLeaveDurationInDays(input.startDate, input.endDate);
+
   return prisma.leaveRequest.create({
     data: {
       employeeId,
       leaveType: input.leaveType,
+      durationType: input.durationType,
       startDate: input.startDate,
       endDate: input.endDate,
-      leaveDuration: calculateLeaveDuration(input.startDate, input.endDate),
+      leaveDuration,
       description: input.description,
     },
   });

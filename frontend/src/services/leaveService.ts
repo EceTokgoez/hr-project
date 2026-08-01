@@ -1,8 +1,9 @@
 import { apiRequest } from './api'
-import type { LeaveRequest } from '../types'
+import type { LeaveDurationType, LeaveRequest } from '../types'
 
 interface CreateLeaveInput {
   leaveType: string
+  durationType: LeaveDurationType
   startDate: string
   endDate: string
   description: string
